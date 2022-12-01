@@ -116,20 +116,23 @@ var exponent = function(base, exp) {
 
 };
 
-// exp = 0 => 1
-// exp = 1 => base
-// exp < 0 => 1/base^exp
-// exp > 1 => base^exp
-
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if (string.length === 1) {
+    return string;
+  } else {
+    var lastLetter = string.substring(string.length - 1);
+    var withoutLast = string.substring(0, string.length - 1);
+    return lastLetter + reverse(withoutLast);
+  }
 };
 
 // 10. Write a function that determines if a string is a palindrome.
