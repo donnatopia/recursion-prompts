@@ -377,6 +377,15 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if (n === 0) {
+    return 0;
+  } else if (n === 1) {
+    return 1;
+  } else if (n > 1) {
+    return nthFibo(n - 2) + nthFibo(n - 1);
+  } else {
+    return null;
+  }
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
