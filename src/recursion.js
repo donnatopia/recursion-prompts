@@ -162,10 +162,13 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-  if (x < y) {
-    return x;
+  var difference = Math.abs(x) - Math.abs(y);
+
+  if (difference < Math.abs(x)) {
+    return x > 0 ? difference : -difference;
   } else {
-    return modulo(x - y, y);
+    var positiveY = Math.abs(y);
+    return x > 0 ? modulo(x - positiveY, y) : modulo(x + positiveY, y);
   }
 };
 
@@ -256,6 +259,20 @@ var fizzBuzz = function(n) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  var occurrence = 0;
+
+  if (array.length > 0) {
+    if (array[0] === value) {
+      occurrence++;
+    }
+
+    if (array.length > 1) {
+      array.shift();
+      occurrence += countOccurrence(array, value);
+    }
+  }
+
+  return occurrence;
 };
 
 // 21. Write a recursive version of map.
