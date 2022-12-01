@@ -105,7 +105,21 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+
+  if(exp === 0) {
+    return 1;
+  } else if (exp >= 1) {
+    return base * exponent(base, exp - 1);
+  } else if (exp < 0) {
+    return 1/(exponent(base, -exp));
+  }
+
 };
+
+// exp = 0 => 1
+// exp = 1 => base
+// exp < 0 => 1/base^exp
+// exp > 1 => base^exp
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
