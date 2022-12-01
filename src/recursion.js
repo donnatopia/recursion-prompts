@@ -457,7 +457,31 @@ var flatten = function(array) {
 // 31. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {p:1, o:2, t:2, a:1}
 var letterTally = function(str, obj) {
+  if (obj === undefined) {
+    var obj = {};
+
+    for(var i = 0; i < str.length; i++) {
+      obj = letterTally(str[i], obj);
+    }
+
+    return obj;
+  } else {
+    if(obj.hasOwnProperty(str)) {
+      obj[str]++;
+    } else {
+      obj[str] = 1;
+    }
+
+    return obj;
+  }
 };
+
+// I: str, obj (but not always defined)
+// O: obj containing tallies of each letter
+// C: use recursion
+// E: N/A
+
+// Strategy
 
 // 32. Eliminate consecutive duplicates in a list. If the list contains repeated
 // elements they should be replaced with a single copy of the element. The order of the
