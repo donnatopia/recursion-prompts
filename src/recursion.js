@@ -476,19 +476,30 @@ var letterTally = function(str, obj) {
   }
 };
 
-// I: str, obj (but not always defined)
-// O: obj containing tallies of each letter
-// C: use recursion
-// E: N/A
-
-// Strategy
-
 // 32. Eliminate consecutive duplicates in a list. If the list contains repeated
 // elements they should be replaced with a single copy of the element. The order of the
 // elements should not be changed.
 // compress([1,2,2,3,4,4,5,5,5]) // [1,2,3,4,5]
 // compress([1,2,2,3,4,4,2,5,5,5,4,4]) // [1,2,3,4,2,5,4]
 var compress = function(list) {
+  if (list.length > 1) {
+    var compressed = [list[0]];
+
+    // check to see if the first two elements are equal
+    if (list[0] !== list[1]) {
+      compressed.push(list[1]);
+    }
+
+    if (list.length > 2) {
+      var last = [compressed.pop()];
+      var rest = last.concat(list.slice(2));
+      compressed = compressed.concat(compress(rest));
+    }
+
+    return compressed;
+  } else {
+    return list;
+  }
 };
 
 // 33. Augment every element in a list with a new value where each element is an array
