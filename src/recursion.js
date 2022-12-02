@@ -210,6 +210,30 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+
+  if ((x < 0) && (y > 0) || (x > 0) && (y < 0)) {
+    var negativeResult = true;
+  } else {
+    var negativeResult = false;
+  }
+
+  if (x < 0) {
+    x = -x;
+  }
+  if (y < 0) {
+    y = -y;
+  }
+
+  var difference = x - y;
+  var quotient = 0;
+  if (difference >= 0) {
+    quotient = 1 + divide (difference, y);
+  }
+
+  return negativeResult ? -quotient : quotient;
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
