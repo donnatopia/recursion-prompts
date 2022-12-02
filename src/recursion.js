@@ -566,6 +566,32 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  var numWords = {
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+    '6': 'six',
+    '7': 'seven',
+    '8': 'eight',
+    '9': 'nine'
+  };
+
+  var sentence = [];
+  var words = str.split(' ');
+
+  if (numWords.hasOwnProperty(words[0])) {
+    sentence.push(numWords[words[0]]);
+  } else {
+    sentence.push(words[0]);
+  }
+
+  if (words.length > 1) {
+    sentence = sentence.concat(numToText(words.slice(1).join(' ')));
+  }
+
+  return sentence.join(' ');
 };
 
 
