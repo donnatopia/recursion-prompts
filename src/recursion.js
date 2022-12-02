@@ -485,7 +485,6 @@ var compress = function(list) {
   if (list.length > 1) {
     var compressed = [list[0]];
 
-    // check to see if the first two elements are equal
     if (list[0] !== list[1]) {
       compressed.push(list[1]);
     }
@@ -506,6 +505,17 @@ var compress = function(list) {
 // itself.
 // augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
+  if (array.length === 1) {
+    array[0].push(aug);
+    return array;
+  } else {
+    var augmented = [];
+    for (var i = 0; i < array.length; i++) {
+      augmented = augmented.concat(augmentElements([array[i]], aug));
+    }
+    return augmented;
+  }
+  return array;
 };
 
 // 34. Reduce a series of zeroes to a single 0.
