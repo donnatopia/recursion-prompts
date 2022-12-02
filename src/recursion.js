@@ -121,7 +121,15 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 2 || n === 1) {
+    return true;
+  }
 
+  if (n > 2 && n/2 === Math.ceil(n/2)) {
+    return powerOfTwo(n/2);
+  } else {
+    return false;
+  }
 };
 
 // 9. Write a function that reverses a string.
